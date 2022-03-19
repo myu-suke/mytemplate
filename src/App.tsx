@@ -1,40 +1,20 @@
-import { useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { Box, Heading, Container, Text, Stack } from "@chakra-ui/react";
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count2) => count2 + 1)}>
-            count is: {count}
-          </button>
-        </p>
-
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <Container maxW="3xl" minH="100vh">
+      <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
+        <Heading fontWeight={600} fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }} lineHeight="110%">
+          Make money from <br />
+          <Text as="span" color="green.400">
+            your audience
+          </Text>
+        </Heading>
+        <Text color="gray.500">
+          Monetize your content by charging your most loyal readers and reward them loyalty points. Give back to your
+          loyal readers by granting them access to your pre-releases and sneak-peaks.
+        </Text>
+      </Stack>
+    </Container>
   );
 }
-
-export default App;
