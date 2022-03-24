@@ -24,7 +24,7 @@ rules:
   react/react-in-jsx-scope: off
   react/jsx-curly-brace-presence: error
   react/jsx-boolean-value: error
-  # タグを閉じる
+  # 空のタグを閉じる
   react/self-closing-comp:
     - error
     - component: true
