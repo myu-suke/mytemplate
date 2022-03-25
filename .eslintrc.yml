@@ -34,3 +34,7 @@ rules:
     - 2
     - namedComponents: arrow-function
       unnamedComponents: function-expression
+  # import時の拡張子不要
+  import/extensions:
+    - error
+    - never
