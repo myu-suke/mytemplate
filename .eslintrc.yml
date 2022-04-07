@@ -38,3 +38,4 @@ rules:
   import/extensions:
     - error
     - never
+  react/button-has-type: off
