@@ -13,4 +13,4 @@ const ColorThemeToggleButton = () => {
   );
 };
 
-export default ColorThemeToggleButton;
+export { ColorThemeToggleButton };

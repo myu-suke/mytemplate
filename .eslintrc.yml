@@ -18,6 +18,7 @@ plugins:
   - react
   - react-hooks # add hooks
   - "@typescript-eslint"
+  - import
 rules:
   react-hooks/rules-of-hooks: error
   react-hooks/exhaustive-deps: warn
@@ -39,3 +40,15 @@ rules:
     - error
     - never
   react/button-has-type: off
+  react/jsx-props-no-spreading: off
+  jsx-a11y/label-has-associated-control: off
+  react/require-default-props: off
+  import/prefer-default-export: off
+  import/no-default-export: error
+# overrides:
+#   - files:
+#       - "*/pages/*"
+#       - "*/pages/api/*"
+#     rules:
+#       import/no-default-export: "off"
+#       import/prefer-default-export: "error"

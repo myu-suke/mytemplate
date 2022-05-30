@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-location";
 import { useAspidaQuery } from "@aspida/react-query";
 import aspida from "@aspida/axios";
 import { useQueryClient, useMutation } from "react-query";
-import ColorThemeToggleButton from "~/components/atoms/ColorThemeToggleButton";
+import { ColorThemeToggleButton } from "~/components/ui/buttons/ColorThemeToggleButton";
 import api from "~/../api/users/$api";
 
 const client = api(aspida());
@@ -53,7 +53,7 @@ const Users = () => {
   );
 };
 
-const App = () => (
+const Index = () => (
   <Container maxW="3xl" minH="100vh" bg={useColorModeValue("#ddc", "#112")} pt={4}>
     <ColorThemeToggleButton />
     <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
@@ -67,10 +67,10 @@ const App = () => (
         Monetize your content by charging your most loyal readers and reward them loyalty points. Give back to your
         loyal readers by granting them access to your pre-releases and sneak-peaks.
       </Text>
-      <Link to="about">about</Link>
+      <Link to="about">about</Link>｜<Link to="form">form</Link>
       <Users />
     </Stack>
   </Container>
 );
 
-export default App;
+export { Index };
