@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { Router, Outlet } from "@tanstack/react-location";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { routes, location } from "~/router/routes";
-import theme from "./theme";
+import { theme } from "./theme";
 
 const queryClient = new QueryClient();
 

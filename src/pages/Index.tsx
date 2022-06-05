@@ -4,7 +4,7 @@ import { useAspidaQuery } from "@aspida/react-query";
 import aspida from "@aspida/axios";
 import { useQueryClient, useMutation } from "react-query";
 import { ColorThemeToggleButton } from "~/components/ui/buttons/ColorThemeToggleButton";
-import api from "~/../api/users/$api";
+import api from "$/users/$api";
 
 const client = api(aspida());
 
