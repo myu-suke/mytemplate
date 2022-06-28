@@ -45,10 +45,12 @@ rules:
   react/require-default-props: off
   import/prefer-default-export: off
   import/no-default-export: error
-# overrides:
-#   - files:
-#       - "*/pages/*"
-#       - "*/pages/api/*"
-#     rules:
+overrides:
+  - files:
+      - "**/*.stories.*"
+    rules:
+      import/no-anonymous-default-export: "off"
+      import/no-extraneous-dependencies: "off"
+      import/no-default-export: "off"
 #       import/no-default-export: "off"
 #       import/prefer-default-export: "error"

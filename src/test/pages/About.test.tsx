@@ -3,7 +3,7 @@ import { test, expect } from "vitest";
 import { Router } from "@tanstack/react-location";
 import { routes, location } from "~/router/routes";
 
-import About from "~/pages/About";
+import { About } from "~/pages/About";
 
 function toJson(component: renderer.ReactTestRenderer) {
   const result = component.toJSON();
