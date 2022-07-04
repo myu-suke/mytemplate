@@ -1,12 +1,12 @@
 import { Box, Heading, Container, Text, Stack, useColorModeValue } from "@chakra-ui/react";
 import { Link } from "@tanstack/react-location";
 import { useAspidaQuery } from "@aspida/react-query";
-import aspida from "@aspida/axios";
 import { useQueryClient, useMutation } from "react-query";
+import { fetcher } from "$/fetcher";
 import { ColorThemeToggleButton } from "~/components/ui/buttons/ColorThemeToggleButton";
 import api from "$/users/$api";
 
-const client = api(aspida());
+const client = api(fetcher);
 
 function postUser(body: { id: number; name: string }) {
   return client.$post({ body });
@@ -15,7 +15,6 @@ function postUser(body: { id: number; name: string }) {
 // const fetchA = async () => (await fetch("https://jsonplaceholder.typicode.com/users")).json();
 
 const Users = () => {
-  // const { data, error } = useQuery("users", fetchA, { staleTime: Infinity });
   // Access the client
   const queryClient = useQueryClient();
   // Queries

@@ -4,7 +4,7 @@ import type { Methods as Methods0 } from './users'
 import type { Methods as Methods1 } from './users/_userId@number'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? 'https://jsonplaceholder.typicode.com/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '')
   const PATH0 = '/users'
   const GET = 'GET'
   const POST = 'POST'
