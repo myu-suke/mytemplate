@@ -45,6 +45,7 @@ rules:
   react/require-default-props: off
   import/prefer-default-export: off
   import/no-default-export: error
+  "@typescript-eslint/no-unused-expressions": off
 overrides:
   - files:
       - "**/*.stories.*"

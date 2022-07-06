@@ -2,9 +2,11 @@ import { Box, Heading, Container, Text, Stack, useColorModeValue } from "@chakra
 import { Link } from "@tanstack/react-location";
 import { useAspidaQuery } from "@aspida/react-query";
 import { useQueryClient, useMutation } from "react-query";
+import { useSetRecoilState } from "recoil";
 import { fetcher } from "$/fetcher";
 import { ColorThemeToggleButton } from "~/components/ui/buttons/ColorThemeToggleButton";
 import api from "$/users/$api";
+import { userListState } from "~/stores/users/userList";
 
 const client = api(fetcher);
 
@@ -19,6 +21,8 @@ const Users = () => {
   const queryClient = useQueryClient();
   // Queries
   const { data, error } = useAspidaQuery(client, { query: { limit: 10 }, staleTime: 5000 });
+  const setUserList = useSetRecoilState(userListState);
+  data && setUserList(data);
 
   // Mutations
   const mutation = useMutation(postUser, {
