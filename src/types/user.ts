@@ -1,9 +1,10 @@
 import { z } from "zod";
 
 export const AddressSchema = z.object({
-  city: z.string().min(1, { message: "必須入力です" }),
+  city: z.string().nonempty({ message: "必須入力です" }),
   street: z.union([z.string().nullable(), z.boolean()]), // checkbox用途ではunionでboolとstringを受け取る
-  zipcode: z.array(z.string()).optional(),
+  // zipcode: z.union([z.array(z.string()), z.boolean()]), // checkbox（複数）
+  zipcode: z.array(z.string()).nonempty({ message: "必須入力です" }),
   suite: z.string()
 });
 

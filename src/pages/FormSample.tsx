@@ -1,5 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
+import { Button } from "@chakra-ui/react";
 import { UserSchema } from "~/types/user";
 import { FormInput } from "~/components/ui/forms/FormInput";
 import { useForm } from "~/components/functional/useForm";
@@ -71,7 +72,7 @@ const FormSample = () => {
         <FormMultiCheckbox label="label" values={checkList} {...form.register("address.zipcode")} />
         <FormRadio values={radioList} {...form.register("address.suite")} />
 
-        <button type="submit">Submit </button>
+        <Button type="submit">Submit </Button>
       </Form>
     </>
   );

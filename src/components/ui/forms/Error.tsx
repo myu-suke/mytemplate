@@ -10,10 +10,17 @@ const FieldError = ({ name }: FieldErrorType) => {
     formState: { errors }
   } = useFormContext();
   window.console.error(errors);
+  window.console.info(name);
 
   if (!name) return null;
-
-  const error = errors[name];
+  const fieldnames = name.split(".");
+  // const error = errors[name];
+  const error = fieldnames.reduce((previousValue, currentValue) => {
+    if (!previousValue) {
+      return null;
+    }
+    return previousValue[currentValue];
+  }, errors);
 
   if (!error) return null;
 
