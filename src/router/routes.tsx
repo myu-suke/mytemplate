@@ -5,10 +5,18 @@ import { About } from "~/pages/About";
 
 export const location = new ReactLocation();
 
-export const routes: Route[] = [
-  { path: "/", element: () => import("~/pages/Home").then((page) => <page.Home />) },
-  { path: "about", element: <About /> },
-  { path: "form", element: () => import("~/pages/FormSample").then((page) => <page.FormSample />) }
+type CustomRoute = {
+  name: string;
+} & Route;
+
+export const routes: CustomRoute[] = [
+  { path: "/", element: () => import("~/pages/Home").then((page) => <page.Home />), name: "home" },
+  { path: "about", element: <About />, name: "About" },
+  {
+    path: "form",
+    element: () => import("~/pages/FormSample").then((page) => <page.FormSample />),
+    name: "Formサンプル"
+  }
   // { path: "form", element: <FormSample /> }
   // { path: "/posts", element: <Posts /> }
 ];

@@ -2,7 +2,7 @@ import { Box, Container, Heading, Link, Stack, Text, useColorModeValue } from "@
 
 const textcolor = "teal.500";
 const Home = () => (
-  <Container maxW="3xl" minH="100vh" bg={useColorModeValue("#fff", "#000")} pt={4}>
+  <Container maxW="3xl" minH="" bg={useColorModeValue("#fff", "#000")}>
     <Stack as={Box} textAlign="center" spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
       <Heading fontWeight={600} fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }} lineHeight="110%">
         <Link href="https://ja.vitejs.dev/" color={textcolor}>
@@ -41,12 +41,6 @@ const Home = () => (
           zod
         </Link>{" "}
       </Text>
-      {/* <Link as={RouterLink} to="about">
-        about
-      </Link>
-      <Link as={RouterLink} to="form">
-        form
-      </Link> */}
     </Stack>
   </Container>
 );
