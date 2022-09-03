@@ -19,7 +19,7 @@ const Home = () => (
         <br />
         Template
       </Heading>
-      <Text color="gray.500">
+      <Text color={useColorModeValue("#000", "#fff")}>
         using{" "}
         <Link href="https://recoiljs.org/" color={textcolor}>
           recoil

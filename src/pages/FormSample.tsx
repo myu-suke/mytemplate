@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Container, useColorModeValue } from "@chakra-ui/react";
 // import { useRecoilValue } from "recoil";
 import { useForm } from "~/components/functional/useForm";
 import { FormInput } from "~/components/ui/forms/FormInput";
@@ -44,32 +44,38 @@ const FormSample = () => {
   // this is hook is required to use form
   const form = useForm({
     schema: UserSchema,
-    defaultValues: { name: "test" }
+    defaultValues: {
+      name: "This is default value",
+      address: { suite: "testAVal", zipcode: [], street: true, city: "testCity" }
+    }
   });
-  return (
-    <Form form={form} onSubmit={(values) => window.console.log(values)}>
-      <FormInput
-        label="Your first name"
-        type="text"
-        placeholder="John"
-        required
-        // press ctrl + space when you type firstName
-        {...form.register("name")}
-      />
-      <FormInput label="Choose username" type="text" placeholder="im_john_doe" {...form.register("username")} />
-      <FormInput label="Email Address" type="email" placeholder="you@example.com" {...form.register("email")} />
-      <FormSelect label="country" placeholder="Select country" {...form.register("address.city")}>
-        <option value="testCity">test</option>
-        <option value="test2City">test2</option>
-      </FormSelect>
-      <FormSingleCheckbox label="label" value {...form.register("address.street")}>
-        check
-      </FormSingleCheckbox>
-      <FormMultiCheckbox label="label" values={checkList} {...form.register("address.zipcode")} />
-      <FormRadio values={radioList} {...form.register("address.suite")} />
 
-      <Button type="submit">Submit </Button>
-    </Form>
+  return (
+    <Container maxW="3xl" minH="" bg={useColorModeValue("#fff", "#000")}>
+      <Form form={form} onSubmit={(values) => window.console.log({ values })}>
+        <FormInput
+          label="Your first name"
+          type="text"
+          placeholder="John"
+          required
+          // press ctrl + space when you type firstName
+          {...form.register("name")}
+        />
+        <FormInput label="Choose username" type="text" placeholder="im_john_doe" {...form.register("username")} />
+        <FormInput label="Email Address" type="email" placeholder="you@example.com" {...form.register("email")} />
+        <FormSelect label="country" placeholder="Select country" {...form.register("address.city")}>
+          <option value="testCity">test</option>
+          <option value="test2City">test2</option>
+        </FormSelect>
+        <FormSingleCheckbox label="label" value {...form.register("address.street")}>
+          check
+        </FormSingleCheckbox>
+        <FormMultiCheckbox label="label" values={checkList} {...form.register("address.zipcode")} />
+        <FormRadio label="label" values={radioList} {...form.register("address.suite")} />
+
+        <Button type="submit">Submit </Button>
+      </Form>
+    </Container>
   );
 };
 

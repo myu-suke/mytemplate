@@ -3,7 +3,7 @@ import { mode } from "@chakra-ui/theme-tools";
 
 const config: ThemeConfig = {
   initialColorMode: "light",
-  useSystemColorMode: true // クライアントのカラーモードと合わせる場合はtrue
+  useSystemColorMode: false // クライアントのカラーモードと合わせる場合はtrue
 };
 
 const theme = extendTheme({

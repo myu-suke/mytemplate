@@ -9,8 +9,8 @@ const FieldError = ({ name }: FieldErrorType) => {
   const {
     formState: { errors }
   } = useFormContext();
-  window.console.error(errors);
-  window.console.info(name);
+  // window.console.error(errors);
+  // window.console.info(name);
 
   if (!name) return null;
   const fieldnames = name.split(".");

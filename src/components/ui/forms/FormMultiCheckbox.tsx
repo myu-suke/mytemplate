@@ -1,5 +1,6 @@
-import { forwardRef, ComponentProps } from "react";
-import { FormHelperText, Checkbox, FormControl } from "@chakra-ui/react";
+import { Checkbox, CheckboxGroup, FormControl, FormHelperText, FormLabel } from "@chakra-ui/react";
+import { ComponentProps, forwardRef } from "react";
+import { useFormContext } from "react-hook-form";
 import { FieldError } from "~/components/ui/forms/Error";
 
 type MultiCheckBoxProps = {
@@ -17,17 +18,25 @@ interface InputProps extends ComponentProps<typeof Checkbox> {
 }
 
 const FormMultiCheckbox = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, children, helperText, values, ...props }, ref) => (
-    <FormControl isRequired={props.required}>
-      {values.map(({ checkLabel, value }) => (
-        <Checkbox key={value} ref={ref} value={value} {...props}>
-          {checkLabel}
-        </Checkbox>
-      ))}
-      <FieldError name={props.name} />
-      {helperText && <FormHelperText>{helperText}</FormHelperText>}
-    </FormControl>
-  )
+  ({ label, children, helperText, values, ...props }, ref) => {
+    const { getValues } = useFormContext();
+    const { name } = props;
+    const propsValue = getValues(name);
+    return (
+      <FormControl isRequired={props.required}>
+        <FormLabel>{label}</FormLabel>
+        <CheckboxGroup defaultValue={propsValue}>
+          {values.map(({ checkLabel, value }) => (
+            <Checkbox key={value} ref={ref} value={value} {...props}>
+              {checkLabel}
+            </Checkbox>
+          ))}
+        </CheckboxGroup>
+        <FieldError name={props.name} />
+        {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      </FormControl>
+    );
+  }
 );
 
 export { FormMultiCheckbox };

@@ -1,5 +1,6 @@
-import { forwardRef, ComponentProps } from "react";
-import { FormHelperText, FormControl, RadioGroup, Stack, Radio } from "@chakra-ui/react";
+import { FormControl, FormHelperText, FormLabel, Radio, RadioGroup, Stack } from "@chakra-ui/react";
+import { ComponentProps, forwardRef } from "react";
+import { useFormContext } from "react-hook-form";
 import { FieldError } from "~/components/ui/forms/Error";
 
 type RadioProps = {
@@ -14,20 +15,27 @@ interface InputProps extends ComponentProps<typeof Radio> {
   values: RadioProps[];
 }
 
-const FormRadio = forwardRef<HTMLInputElement, InputProps>(({ label, helperText, values, name, ...props }, ref) => (
-  <FormControl>
-    <RadioGroup>
-      {values.map(({ radioLabel, value }) => (
-        <Stack direction="row" key={value}>
-          <Radio value={value} name={name} ref={ref} {...props}>
-            {radioLabel}
-          </Radio>
-        </Stack>
-      ))}
-    </RadioGroup>
-    <FieldError name={props.name} />
-    {helperText && <FormHelperText>{helperText}</FormHelperText>}
-  </FormControl>
-));
+const FormRadio = forwardRef<HTMLInputElement, InputProps>(({ label, helperText, values, ...props }, ref) => {
+  const { getValues } = useFormContext();
+  const { name } = props;
+  const propsValue = getValues(name);
+  return (
+    <FormControl>
+      <FormLabel>{label}</FormLabel>
+      <RadioGroup defaultValue={propsValue}>
+        {values.map(({ radioLabel, value }) => (
+          <Stack direction="row" key={value}>
+            <Radio value={value} ref={ref} {...props}>
+              {/* name={name} */}
+              {radioLabel}
+            </Radio>
+          </Stack>
+        ))}
+      </RadioGroup>
+      <FieldError name={props.name} />
+      {helperText && <FormHelperText>{helperText}</FormHelperText>}
+    </FormControl>
+  );
+});
 
 export { FormRadio };

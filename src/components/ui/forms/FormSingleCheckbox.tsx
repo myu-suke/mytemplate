@@ -1,5 +1,6 @@
-import { forwardRef, ComponentProps } from "react";
-import { FormLabel, FormHelperText, Checkbox, FormControl } from "@chakra-ui/react";
+import { Checkbox, FormControl, FormHelperText, FormLabel } from "@chakra-ui/react";
+import { ComponentProps, forwardRef } from "react";
+import { useFormContext } from "react-hook-form";
 import { FieldError } from "~/components/ui/forms/Error";
 
 interface InputProps extends ComponentProps<typeof Checkbox> {
@@ -12,16 +13,21 @@ interface InputProps extends ComponentProps<typeof Checkbox> {
 }
 
 const FormSingleCheckbox = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, children, value, helperText, ...props }, ref) => (
-    <FormControl isRequired={props.required}>
-      <FormLabel>{label}</FormLabel>
-      <FieldError name={props.name} />
-      <Checkbox ref={ref} value={value} {...props}>
-        {children}
-      </Checkbox>
-      {helperText && <FormHelperText>{helperText}</FormHelperText>}
-    </FormControl>
-  )
+  ({ label, children, value, helperText, ...props }, ref) => {
+    const { getValues } = useFormContext();
+    const { name } = props;
+    const propsValue = getValues(name);
+    return (
+      <FormControl isRequired={props.required}>
+        <FormLabel>{label}</FormLabel>
+        <FieldError name={props.name} />
+        <Checkbox ref={ref} value={value} {...props} checked={propsValue === value}>
+          {children}
+        </Checkbox>
+        {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      </FormControl>
+    );
+  }
 );
 
 export { FormSingleCheckbox };
