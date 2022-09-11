@@ -11,7 +11,6 @@ interface FormProps<T extends FieldValues = any> extends Omit<ComponentProps<"fo
 
 const Form = <T extends FieldValues>({ form, onSubmit, children, ...props }: FormProps<T>) => (
   <FormProvider {...form}>
-    {/* the `form` passed here is return value of useForm() hook */}
     <form onSubmit={form.handleSubmit(onSubmit)} {...props} noValidate>
       <fieldset disabled={form.formState.isSubmitting}>{children}</fieldset>
     </form>

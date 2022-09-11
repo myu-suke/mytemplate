@@ -1,4 +1,5 @@
-import { Button, Container, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Container, Stack, useColorModeValue } from "@chakra-ui/react";
+import { useState } from "react";
 // import { useRecoilValue } from "recoil";
 import { useForm } from "~/components/functional/useForm";
 import { FormInput } from "~/components/ui/forms/FormInput";
@@ -8,8 +9,13 @@ import { FormSelect } from "~/components/ui/forms/FormSelect";
 import { FormSingleCheckbox } from "~/components/ui/forms/FormSingleCheckbox";
 import { Form } from "~/components/ui/forms/FormWrapper";
 // import { userListState } from "~/stores/users/userList";
-import { UserSchema } from "~/types/user";
+import { fetcher } from "$/fetcher";
+import api from "$/users/$api";
+import { UserFormSchema, UserSchema } from "~/types/user";
 
+const client = api(fetcher);
+
+const postUser = (body: UserFormSchema) => client.$post({ body });
 // // recoil sample
 // const Users = () => {
 //   const user = useRecoilValue(userListState);
@@ -25,22 +31,24 @@ import { UserSchema } from "~/types/user";
 //   );
 // };
 
-const FormSample = () => {
-  const checkList = [
-    {
-      checkLabel: "test1",
-      value: "test1"
-    },
-    {
-      checkLabel: "test2",
-      value: "test2"
-    }
-  ];
+const checkList = [
+  {
+    checkLabel: "test1",
+    value: "test1"
+  },
+  {
+    checkLabel: "test2",
+    value: "test2"
+  }
+];
 
-  const radioList = [
-    { radioLabel: "testA", value: "testAVal" },
-    { radioLabel: "testB", value: "testBVal" }
-  ];
+const radioList = [
+  { radioLabel: "testA", value: "testAVal" },
+  { radioLabel: "testB", value: "testBVal" }
+];
+
+const FormSample = () => {
+  const [value, setValue] = useState<any>({});
   // this is hook is required to use form
   const form = useForm({
     schema: UserSchema,
@@ -52,15 +60,16 @@ const FormSample = () => {
 
   return (
     <Container maxW="3xl" minH="" bg={useColorModeValue("#fff", "#000")}>
-      <Form form={form} onSubmit={(values) => window.console.log({ values })}>
-        <FormInput
-          label="Your first name"
-          type="text"
-          placeholder="John"
-          required
-          // press ctrl + space when you type firstName
-          {...form.register("name")}
-        />
+      <Form
+        form={form}
+        onSubmit={async (values) => {
+          // FIXME ここにリクエストメソッドを記載
+          setValue(values);
+          window.console.log({ values });
+          await postUser(values);
+        }}
+      >
+        <FormInput label="Your first name" type="text" placeholder="John" required {...form.register("name")} />
         <FormInput label="Choose username" type="text" placeholder="im_john_doe" {...form.register("username")} />
         <FormInput label="Email Address" type="email" placeholder="you@example.com" {...form.register("email")} />
         <FormSelect label="country" placeholder="Select country" {...form.register("address.city")}>
@@ -75,6 +84,9 @@ const FormSample = () => {
 
         <Button type="submit">Submit </Button>
       </Form>
+      <Stack>
+        <Box>request :{JSON.stringify(value)}</Box>
+      </Stack>
     </Container>
   );
 };

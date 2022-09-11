@@ -14,14 +14,28 @@ interface InputProps extends ComponentProps<typeof Checkbox> {
 
 const FormSingleCheckbox = forwardRef<HTMLInputElement, InputProps>(
   ({ label, children, value, helperText, ...props }, ref) => {
-    const { getValues } = useFormContext();
+    const {
+      getValues,
+      formState: { errors }
+    } = useFormContext();
     const { name } = props;
     const propsValue = getValues(name);
+
+    if (!name) return null;
+    const fieldnames = name.split(".");
+    // const error = errors[name];
+    const error = fieldnames.reduce((previousValue, currentValue) => {
+      if (!previousValue) {
+        return null;
+      }
+      return previousValue[currentValue];
+    }, errors);
+    const isInvalid = !!error;
     return (
       <FormControl isRequired={props.required}>
         <FormLabel>{label}</FormLabel>
         <FieldError name={props.name} />
-        <Checkbox ref={ref} value={value} {...props} checked={propsValue === value}>
+        <Checkbox ref={ref} value={value} isInvalid={isInvalid} {...props} checked={propsValue === value}>
           {children}
         </Checkbox>
         {helperText && <FormHelperText>{helperText}</FormHelperText>}

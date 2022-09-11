@@ -16,6 +16,11 @@ export const routes: CustomRoute[] = [
     path: "form",
     element: () => import("~/pages/FormSample").then((page) => <page.FormSample />),
     name: "Formサンプル"
+  },
+  {
+    path: "recoil",
+    element: () => import("~/pages/RecoilSample").then((page) => <page.RecoilSample />),
+    name: "Recoilサンプル"
   }
   // { path: "form", element: <FormSample /> }
   // { path: "/posts", element: <Posts /> }

@@ -5,3 +5,8 @@ export const userListState = atom<User[]>({
   key: "userListState", // unique ID (with respect to other atoms/selectors)
   default: [] // default value (aka initial value)
 });
+
+export const userState = atom<User[]>({
+  key: "userState", // unique ID (with respect to other atoms/selectors)
+  default: [] // default value (aka initial value)
+});

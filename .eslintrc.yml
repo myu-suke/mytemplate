@@ -39,6 +39,11 @@ rules:
   import/extensions:
     - error
     - never
+  import/order:
+    - error
+    - pathGroups:
+        - pattern: $/**
+          group: external
   react/button-has-type: off
   react/jsx-props-no-spreading: off
   jsx-a11y/label-has-associated-control: off
@@ -46,9 +51,12 @@ rules:
   import/prefer-default-export: off
   import/no-default-export: error
   "@typescript-eslint/no-unused-expressions": off
+  no-underscore-dangle: off
+
 overrides:
   - files:
       - "**/*.stories.*"
+      - "./api/**"
     rules:
       import/no-anonymous-default-export: "off"
       import/no-extraneous-dependencies: "off"
