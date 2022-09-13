@@ -1,11 +1,11 @@
-import { Box, Heading, Container, Text, Stack, useColorModeValue } from "@chakra-ui/react";
-import { Link } from "@tanstack/react-location";
-import { useAspidaQuery } from "@aspida/react-query";
-import { useQueryClient, useMutation } from "react-query";
-import { useSetRecoilState } from "recoil";
 import { fetcher } from "$/fetcher";
-import { ColorThemeToggleButton } from "~/components/ui/buttons/ColorThemeToggleButton";
 import api from "$/users/$api";
+import { useAspidaQuery } from "@aspida/react-query";
+import { Box, Container, Heading, Stack, Text, useColorModeValue } from "@chakra-ui/react";
+import { Link } from "@tanstack/react-location";
+import { useMutation, useQueryClient } from "react-query";
+import { useSetRecoilState } from "recoil";
+import { ColorThemeToggleButton } from "~/components/ui/buttons/ColorThemeToggleButton";
 import { userListState } from "~/stores/users/userList";
 
 const client = api(fetcher);
@@ -13,8 +13,6 @@ const client = api(fetcher);
 function postUser(body: { id: number; name: string }) {
   return client.$post({ body });
 }
-
-// const fetchA = async () => (await fetch("https://jsonplaceholder.typicode.com/users")).json();
 
 const Users = () => {
   // Access the client

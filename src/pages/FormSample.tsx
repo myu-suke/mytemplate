@@ -1,6 +1,7 @@
+import { fetcher } from "$/fetcher";
+import api from "$/users/$api";
 import { Box, Button, Container, Stack, useColorModeValue } from "@chakra-ui/react";
 import { useState } from "react";
-// import { useRecoilValue } from "recoil";
 import { useForm } from "~/components/functional/useForm";
 import { FormInput } from "~/components/ui/forms/FormInput";
 import { FormMultiCheckbox } from "~/components/ui/forms/FormMultiCheckbox";
@@ -8,28 +9,11 @@ import { FormRadio } from "~/components/ui/forms/FormRadio";
 import { FormSelect } from "~/components/ui/forms/FormSelect";
 import { FormSingleCheckbox } from "~/components/ui/forms/FormSingleCheckbox";
 import { Form } from "~/components/ui/forms/FormWrapper";
-// import { userListState } from "~/stores/users/userList";
-import { fetcher } from "$/fetcher";
-import api from "$/users/$api";
 import { UserFormSchema, UserSchema } from "~/types/user";
 
 const client = api(fetcher);
 
 const postUser = (body: UserFormSchema) => client.$post({ body });
-// // recoil sample
-// const Users = () => {
-//   const user = useRecoilValue(userListState);
-
-//   return (
-//     <div>
-//       <ul>
-//         {user.map((u) => (
-//           <li key={u.id}>{u.name}</li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
 
 const checkList = [
   {

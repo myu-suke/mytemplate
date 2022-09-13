@@ -10,7 +10,7 @@ type CustomRoute = {
 } & Route;
 
 export const routes: CustomRoute[] = [
-  { path: "/", element: () => import("~/pages/Home").then((page) => <page.Home />), name: "home" },
+  { path: "/", element: () => import("~/pages/Home").then((page) => <page.Home />), name: "Home" },
   { path: "about", element: <About />, name: "About" },
   {
     path: "form",
@@ -22,6 +22,4 @@ export const routes: CustomRoute[] = [
     element: () => import("~/pages/RecoilSample").then((page) => <page.RecoilSample />),
     name: "Recoilサンプル"
   }
-  // { path: "form", element: <FormSample /> }
-  // { path: "/posts", element: <Posts /> }
 ];

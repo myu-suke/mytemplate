@@ -1,7 +1,7 @@
 import { fetcher } from "$/fetcher";
 import api from "$/users/$api";
 import { useAspidaQuery } from "@aspida/react-query";
-import { Container, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue } from "@chakra-ui/react";
+import { Container, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue } from "@chakra-ui/react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userState } from "~/stores/users/userList";
 
@@ -13,13 +13,17 @@ const client = api(fetcher);
 const GetUserInfo = () => {
   console.log("GetUserInfo render");
   // Queries
-  const { data, error } = useAspidaQuery(client._userId(1), { staleTime: 5000 });
+  const { data, error, isLoading } = useAspidaQuery(client._userId(1), { staleTime: 5000 });
   const setUser = useSetRecoilState(userState);
   data && setUser(data);
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   if (error) {
     return <div>{JSON.stringify(error)}</div>;
   }
-  return <div>{JSON.stringify(data)}</div>;
+  return <div>{JSON.stringify(data, null, 2)}</div>;
 };
 
 const ShowUserInfo = () => {
@@ -27,21 +31,11 @@ const ShowUserInfo = () => {
   // recoil sample
   const user = useRecoilValue(userState);
 
-  return <div>Recoile state : {JSON.stringify(user)}</div>;
+  return <div>Recoile state : {JSON.stringify(user, null, 2)}</div>;
 };
 
 const RecoilSample = () => {
   console.log("RecoileSample render");
-  // const [value, setValue] = useState<any>({});
-  // this is hook is required to use form
-  // const form = useForm({
-  //   schema: UserSchema,
-  //   defaultValues: {
-  //     name: "This is default value",
-  //     address: { suite: "testAVal", zipcode: [], street: true, city: "testCity" }
-  //   }
-  // });
-
   return (
     <Container maxW="3xl" minH="" bg={useColorModeValue("#fff", "#000")}>
       <Tabs>
