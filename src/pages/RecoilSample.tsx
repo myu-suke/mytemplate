@@ -11,7 +11,6 @@ const client = api(fetcher);
 // const postUser = (body: UserFormSchema) => client.$post({ body });
 
 const GetUserInfo = () => {
-  console.log("GetUserInfo render");
   // Queries
   const { data, error, isLoading } = useAspidaQuery(client._userId(1), { staleTime: 5000 });
   const setUser = useSetRecoilState(userState);
@@ -27,34 +26,30 @@ const GetUserInfo = () => {
 };
 
 const ShowUserInfo = () => {
-  console.log("ShowUserInfo render");
   // recoil sample
   const user = useRecoilValue(userState);
 
   return <div>Recoile state : {JSON.stringify(user, null, 2)}</div>;
 };
 
-const RecoilSample = () => {
-  console.log("RecoileSample render");
-  return (
-    <Container maxW="3xl" minH="" bg={useColorModeValue("#fff", "#000")}>
-      <Tabs>
-        <TabList>
-          <Tab>GET UserInfo</Tab>
-          <Tab>Show UserInfo</Tab>
-        </TabList>
+const RecoilSample = () => (
+  <Container maxW="3xl" minH="" bg={useColorModeValue("#fff", "#000")}>
+    <Tabs>
+      <TabList>
+        <Tab>GET UserInfo</Tab>
+        <Tab>Show UserInfo</Tab>
+      </TabList>
 
-        <TabPanels>
-          <TabPanel>
-            <GetUserInfo />
-          </TabPanel>
-          <TabPanel>
-            <ShowUserInfo />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-    </Container>
-  );
-};
+      <TabPanels>
+        <TabPanel>
+          <GetUserInfo />
+        </TabPanel>
+        <TabPanel>
+          <ShowUserInfo />
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
+  </Container>
+);
 
 export { RecoilSample };

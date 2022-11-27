@@ -4,9 +4,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
-import { location, routes } from "~/router/routes";
 import { GrobalMenuButton } from "./components/ui/buttons/GrobalMenuButton";
 import { theme } from "./theme";
+import { location, routes } from "~/router/routes";
 
 const queryClient = new QueryClient();
 

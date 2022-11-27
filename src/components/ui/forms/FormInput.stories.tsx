@@ -1,8 +1,8 @@
 import { ComponentStory, Meta } from "@storybook/react";
 // import React from "react";
-import { useForm } from "~/components/functional/useForm";
 import { FormInput } from "./FormInput";
 import { Form } from "./FormWrapper";
+import { useForm } from "~/components/functional/useForm";
 import { UserSchema } from "~/types/user";
 
 export default {
@@ -19,7 +19,7 @@ const StoryView: Template = (args) => {
     defaultValues: { username: "test" }
   });
   return (
-    <Form form={form} onSubmit={(values) => console.log(values)}>
+    <Form form={form} onSubmit={(values) => window.console.log(values)}>
       <FormInput {...form.register("username")} {...args} />
     </Form>
   );
